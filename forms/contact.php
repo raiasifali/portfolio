@@ -29,7 +29,7 @@
     'host' => 'devasif.alee@gmail.com',
     'username' => 'Asif Ali',
     'password' => 'mjinszkbbegddylk',
-    'port' => '587'
+    'port' => '2525'
   );
   
 
