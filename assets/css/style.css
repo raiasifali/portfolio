@@ -24,6 +24,9 @@ h5,
 h6 {
   color: #1e1e1e;
 }
+.swiper-wrapper{
+  height: 430px;
+}
 
 a {
   color: #1e1e1e;
