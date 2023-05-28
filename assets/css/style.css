@@ -27,6 +27,9 @@ h6 {
 .swiper-wrapper{
   height: 430px;
 }
+.testimonial-box .author-test img{
+  width: 150px;
+}
 
 a {
   color: #1e1e1e;
