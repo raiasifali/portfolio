@@ -740,6 +740,16 @@ a:hover {
 .navbar-mobile .dropdown>.dropdown-active {
   display: block;
 }
+.text-left{
+  text-align: left;
+}
+.d-flex-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
 
 /*--------------------------------------------------------------
 # Hero Section
@@ -748,6 +758,8 @@ a:hover {
   height: 100vh;
   position: relative;
   color: #fff;
+  /* background: white; */
+  background: linear-gradient(to left, hsla(273, 81%, 44%, 0), rgb(129, 29, 195));
 }
 
 .hero .hero-content {
