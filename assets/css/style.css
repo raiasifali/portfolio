@@ -1480,3 +1480,45 @@ footer .credits {
 footer .credits a {
   color: #fff;
 }
+@media only screen and (max-width: 600px) {
+  .mb-disp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero{
+    height: 60vh;
+  }
+  .hero-title{
+    margin-bottom: 0 !important;
+  }
+  .paralax-mf{
+    padding: 3rem 0;
+  }
+  .swiper-pagination{
+    margin-top: 12rem;
+  }
+  #about{
+    padding-top: 1rem;
+  }
+  .box-shadow-full{
+    padding-top: 0rem !important;
+  }
+  .title-box-2 {
+    margin-bottom: 2rem;
+  }
+  #getInTouch{
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    align-items: center;
+    justify-content: center;
+  }
+  .more-info{
+    text-align: center;
+  }
+  #contact{
+    padding-top: 0rem;
+    margin-top: 0rem;
+  }
+}

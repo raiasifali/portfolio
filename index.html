@@ -21,12 +21,13 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-</head>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
+</head>
 <body>
   <!-- ======= Hero Section ======= -->
   <div id="hero" class="hero route bg-image">
-    <div class="hero-content display-table">
+    <div class="hero-content display-table mb-disp">
       <div class="table-cell mx-auto">
         <div class="container text-left d-flex-title">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
@@ -632,7 +633,7 @@
                           </div>
                           <div class="col-md-12">
                             <div class="form-group">
-                              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                              <textarea class="form-control" name="message" rows="5" id="message" placeholder="Message" required></textarea>
                             </div>
                           </div>
                           <div class="col-md-12 text-center my-3">
@@ -647,7 +648,7 @@
                       </form>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6" id="getInTouch">
                     <div class="title-box-2 pt-4 pt-md-0">
                       <h5 class="title-left">
                         Get in Touch
@@ -681,28 +682,6 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="copyright-box">
-            <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
-            <div class="credits">
-              <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-            -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End  Footer -->
-
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -722,47 +701,56 @@
 </html>
 
 <script>
+  emailjs.init("m336IomphYEjS3qKC");
+  
   // Get the form element
-var form = document.querySelector('.portfolio-form');
-var successMessage = document.querySelector('.sent-message');
-// Add an event listener for form submission
-form.addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the default form submission
+  var form = document.querySelector('.portfolio-form');
+  var successMessage = document.querySelector('.sent-message');
+  var loadingMessage = document.querySelector('.loading');
+  var errorMessage = document.querySelector('.error-message');
+  loadingMessage.style.display = 'none';
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
 
-  // Get the field values
-  var name = document.getElementById('name').value;
-  var email = document.getElementById('email').value;
-  var subject = document.getElementById('subject').value;
-  var message = document.getElementById('message').value;
 
-  // Create the email body
-  var emailBody = 'Name: ' + name + '\n';
-  emailBody += 'Email: ' + email + '\n';
-  emailBody += 'Subject: ' + subject + '\n';
-  emailBody += 'Message: ' + message;
+  // Add an event listener for form submission
+  form.addEventListener('submit', function (event) {
+    loadingMessage.style.display = 'block';
+    event.preventDefault(); // Prevent the default form submission
 
-  // Send the email using SMTP (replace the placeholders with your SMTP settings)
-  Email.send({
-    Host: 'smtp.gmail.com',
-    Username: 'devasif.alee@gmail.com',
-    Password: 'mjinszkbbegddylk',
-    To: 'devasif.alee@gmail.com',
-    From: email,
-    Subject: 'New Contact Form Submission',
-    Body: emailBody
-  }).then(function() {
-    // Display success message
-    var successMessage = document.querySelector('.sent-message');
-    successMessage.style.display = 'block';
+    // Get the field values
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var subject = document.getElementById('subject').value;
+    var message = document.getElementById('message').value;
 
-    // Reset the form fields
-    form.reset();
-  }).catch(function(error) {
-    // Display error message
-    var errorMessage = document.querySelector('.error-message');
-    errorMessage.innerHTML = 'An error occurred while sending the message. Please try again later.';
-    errorMessage.style.display = 'block';
+    // Show loading message
+    loadingMessage.style.display = 'block';
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+
+    // Use the Email.js send method
+    emailjs.send("service_1nnd1wr", "template_a6tzu05", {
+      from_name: name,
+      email: email,
+      subject: subject,
+      message: message
+    }).then(function (response) {
+      // Hide loading message
+      loadingMessage.style.display = 'none';
+
+      // Display success message
+      successMessage.style.display = 'block';
+
+      // Reset the form fields
+      form.reset();
+    }, function (error) {
+      // Hide loading message
+      loadingMessage.style.display = 'none';
+
+      // Display error message
+      errorMessage.innerHTML = 'An error occurred while sending the message. Please try again later.';
+      errorMessage.style.display = 'block';
+    });
   });
-});
-
 </script>
